@@ -18,6 +18,7 @@ toast = ToastNotifier()
 
 
 def get_file_list(chat):
+    """Выбор нужного логфайла из папки с логами"""
     file_list = ""
     all_logs = os.listdir(DIR)
     data_base = 0
@@ -31,6 +32,7 @@ def get_file_list(chat):
 
 
 def find_dangerose_system(logs_secur, sequre_line):
+    """Отбор свежих систем из секьюрити чата"""
     f = open(
         EVE_SYSTEMS,
         "r",
@@ -62,6 +64,7 @@ def find_dangerose_system(logs_secur, sequre_line):
 
 
 def push(len_trace):
+    """Вывод пуш уведомления в случае если джампов до системы менее 10"""
     plt = platform.system()
     if plt == "Darwin":
         command = '''
@@ -80,6 +83,7 @@ def push(len_trace):
 
 
 def jump_to_danger(current_system, dangerose_sustem):
+    """Определение количества джампов до системы из секьюр чата"""
     print(current_system)
     print(f'в джампе{dangerose_sustem}')
     system_list_name_to_id_danger = '["' + '", "'.join(str(element) for element in dangerose_sustem) + '"]'
@@ -104,6 +108,7 @@ def jump_to_danger(current_system, dangerose_sustem):
 
 
 def find_location(local):
+    """Помск звезной системы персонажа в локальном чате"""
     col_line_base = 12
     logs_location = f'{DIR}\{get_file_list(local)}'  # Выбор файла логирования локального чата
     f = open(
@@ -125,6 +130,7 @@ def find_location(local):
 
 
 def circle():
+    """Основной цикл"""
     lbl_eve_circle.configure(text='Мониторинг запущен')
     global LOC_CHAT, SEC_CHAT
     sequre_line = 16
@@ -155,6 +161,7 @@ dir_log_path = ''
 
 
 def open_directory_logfile():
+    """Выбор папки с логами чатов"""
     global DIR, ID_PERS, SEC_CHAT, LOC_CHAT, dir_log_path
     dir_log_path = filedialog.askdirectory()
     if dir_log_path != '':
@@ -166,6 +173,7 @@ def open_directory_logfile():
 
 
 def open_eve_system_file():
+    """Выбор файла со списком звездных систем"""
     global DIR, EVE_SYSTEMS
     eve_system_file = filedialog.askopenfilename()
     if eve_system_file != '':
@@ -175,12 +183,13 @@ def open_eve_system_file():
 
 
 def stop():
+    """Остановка функции мониторинга логов"""
     lbl_eve_circle.configure(text='Монитринг остановлен')
 
 
 txt_name_pers = tk.Entry(window, width=20)
 txt_name_pers.grid(column=0, row=0, pady=10)
-txt_name_pers.insert(0, '92027435')
+txt_name_pers.insert(0, '')
 lbl_name_pers = tk.Label(window, text='Введите id персонажа', )
 lbl_name_pers.grid(column=1, row=0, pady=10)
 
@@ -195,13 +204,13 @@ lbl_dir_log.grid(column=1, row=1, pady=10)
 
 txt_sequre_chat = tk.Entry(window, width=20)
 txt_sequre_chat.grid(column=0, row=3, pady=10)
-txt_sequre_chat.insert(0, 'wc.north')
+txt_sequre_chat.insert(0, '')
 lbl_sequre_chat = tk.Label(window, text='Введите название чата безопасности')
 lbl_sequre_chat.grid(column=1, row=3, pady=10)
 
 txt_local_chat = tk.Entry(window, width=20)
 txt_local_chat.grid(column=0, row=4, pady=10)
-txt_local_chat.insert(0, 'Локальный')
+txt_local_chat.insert(0, '')
 lbl_local_chat = tk.Label(window, text='Введите название локального чата')
 lbl_local_chat.grid(column=1, row=4, pady=10)
 
