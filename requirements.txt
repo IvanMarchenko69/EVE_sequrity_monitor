@@ -1,8 +1,8 @@
-pip~=24.0
-pywin32~=306
-certifi~=2024.2.2
-urllib3~=2.2.1
-idna~=3.6
-setuptools~=69.2.0
-win10toast~=0.9
-requests~=2.31.0
+certifi==2024.2.2
+charset-normalizer==3.4.0
+idna==3.10
+pypiwin32==223
+pywin32==308
+requests==2.31.0
+urllib3==2.2.3
+win10toast==0.9
